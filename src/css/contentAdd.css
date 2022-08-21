@@ -1,0 +1,65 @@
+.add {
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.add .input {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+  box-sizing: border-box;
+}
+
+.add .input span {
+  color: #2564cf;
+}
+
+.add .input input {
+  font-size: 16px;
+  width: 100%;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+}
+
+.add .input input::placeholder {
+  color: #2564cf;
+}
+
+.add .input input:focus::placeholder {
+  color: #000;
+}
+
+.add .option {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add .option.off {
+  display: block;
+}
+
+.add .option span {
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.add .option span:hover {
+  background-color: #fff;
+}
+
+.add .option button {
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #e1dfdd;
+  color: #a19f9d;
+  font-weight: bold;
+  cursor: no-drop;
+}

@@ -1,16 +1,25 @@
-import "./Header.css";
+import "../css/header.css";
+import React, { useState } from "react";
 
 function Header() {
+  const [active, setActive] = useState("");
+
+  const click = () => {
+    setActive(active === "" ? "active" : "");
+  };
+  console.log(active);
+
   return (
-    <header className="header">
+    <header id="header">
       <div className="logo">
         <a href="/">
           <span className="material-icons">apps</span>
         </a>
         <h4 className="header_logo">To Do</h4>
       </div>
-      <div className="header_search">
-        <input type="text" />
+      <div className={"header_search " + active}>
+        <span className="material-icons">search</span>
+        <input type="text" onMouseLeave={click} onClick={click} />
       </div>
       <div className="header_etc">
         <a href="/">
