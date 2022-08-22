@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ContentAdd from "./ContentAdd";
+import ContentAdd from "../component/ContentAdd";
 
-function Work(prop) {
-  var [icon, setIcon] = useState("home");
+function Important(prop) {
+  var [icon, setIcon] = useState("star_border");
   useEffect(() => {
     if (prop.data === "menu") {
       setIcon("menu");
@@ -16,13 +16,13 @@ function Work(prop) {
           className={icon}
           onClick={function (e) {
             e.preventDefault();
-            setIcon("home");
+            setIcon("star_border");
             prop.onOpen();
           }}
         >
           <span className="material-icons">{icon}</span>
         </a>
-        <h3 className="drag">작업</h3>
+        <h3 className="drag">중요</h3>
         <a href="/">
           <span className="material-icons">more_horiz</span>
         </a>
@@ -32,4 +32,4 @@ function Work(prop) {
   );
 }
 
-export default Work;
+export default Important;

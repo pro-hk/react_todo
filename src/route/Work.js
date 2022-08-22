@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ContentAdd from "./ContentAdd";
+import ContentAdd from "../component/ContentAdd";
 
-function Plan(prop) {
-  var [icon, setIcon] = useState("calendar_month");
+function Work(prop) {
+  var [icon, setIcon] = useState("home");
   useEffect(() => {
     if (prop.data === "menu") {
       setIcon("menu");
@@ -16,13 +16,13 @@ function Plan(prop) {
           className={icon}
           onClick={function (e) {
             e.preventDefault();
-            setIcon("calendar_month");
+            setIcon("home");
             prop.onOpen();
           }}
         >
           <span className="material-icons">{icon}</span>
         </a>
-        <h3 className="drag">계획된 일정</h3>
+        <h3 className="drag">작업</h3>
         <a href="/">
           <span className="material-icons">more_horiz</span>
         </a>
@@ -32,4 +32,4 @@ function Plan(prop) {
   );
 }
 
-export default Plan;
+export default Work;

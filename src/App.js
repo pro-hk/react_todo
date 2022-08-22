@@ -1,12 +1,12 @@
 import "./App.css";
 import React, { useState } from "react";
 import Header from "./component/Header";
-import Today from "./component/Today";
 import LNB from "./component/LNB";
-import Important from "./component/Important";
-import Plan from "./component/Plan";
-import Assign from "./component/Assign";
-import Work from "./component/Work";
+import Today from "./route/Today";
+import Important from "./route/Important";
+import Plan from "./route/Plan";
+import Assign from "./route/Assign";
+import Work from "./route/Work";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
   var [open, setOpen] = useState("");
 
   return (
-    <BrowserRouter>
-      <div className="App">
+    <div className="App">
+      <BrowserRouter>
         <Header />
         <main>
           <LNB
@@ -88,8 +88,8 @@ function App() {
             />
           </Routes>
         </main>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
   );
 }
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import ContentAdd from "./ContentAdd";
+import ContentAdd from "../component/ContentAdd";
 
-function Important(prop) {
-  var [icon, setIcon] = useState("star_border");
+function Assign(prop) {
+  const [icon, setIcon] = useState("person_outline");
   useEffect(() => {
     if (prop.data === "menu") {
       setIcon("menu");
@@ -10,19 +10,19 @@ function Important(prop) {
   });
   return (
     <div className="today">
-      <div className="main_title" style={{ color: "#2564cf" }}>
+      <div className="main_title" style={{ color: "#5ca52d" }}>
         <a
           href="/"
           className={icon}
           onClick={function (e) {
             e.preventDefault();
-            setIcon("star_border");
+            setIcon("person_outline");
             prop.onOpen();
           }}
         >
           <span className="material-icons">{icon}</span>
         </a>
-        <h3 className="drag">중요</h3>
+        <h3 className="drag">나에게 할당됨</h3>
         <a href="/">
           <span className="material-icons">more_horiz</span>
         </a>
@@ -32,4 +32,4 @@ function Important(prop) {
   );
 }
 
-export default Important;
+export default Assign;

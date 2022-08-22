@@ -38,6 +38,8 @@
 .LNB .menu li {
   list-style: none;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 }
 .LNB .menu li.on {
   background-color: #ecf6fd;
@@ -59,16 +61,11 @@
   background-color: #e7e7e7;
 }
 
-.LNB .menu li a {
-  display: flex;
-  justify-content: space-between;
-}
-
-.LNB .menu li a .title {
+.LNB .menu li .title {
   width: 150px;
 }
 
-.LNB .menu li a .count {
+.LNB .menu li .count {
   width: 30px;
 }
 

@@ -2,6 +2,18 @@ import React from "react";
 import "../css/contentAdd.css";
 
 function ContentAdd() {
+  const options = [
+    { id: 1, link: "/", title: "calendar_month" },
+    { id: 2, link: "/", title: "notifications_none" },
+    { id: 3, link: "/", title: "repeat" },
+  ];
+
+  const optionList = options.map((i) => (
+    <a href={i.link} key={i.id}>
+      <span className="material-icons">{i.title}</span>
+    </a>
+  ));
+
   return (
     <div className="add">
       <div className="input">
@@ -9,17 +21,7 @@ function ContentAdd() {
         <input type="text" placeholder="작업 추가"></input>
       </div>
       <div className="option">
-        <div>
-          <a href="/">
-            <span className="material-icons">calendar_month</span>
-          </a>
-          <a href="/">
-            <span className="material-icons">notifications_none</span>
-          </a>
-          <a href="/">
-            <span className="material-icons">repeat</span>
-          </a>
-        </div>
+        <div>{optionList}</div>
         <button>추가</button>
       </div>
     </div>

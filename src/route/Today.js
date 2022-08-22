@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/today.css";
-import ContentAdd from "./ContentAdd";
+import ContentAdd from "../component/ContentAdd";
 
 function Today(prop) {
   var now = new Date();
