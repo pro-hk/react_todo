@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ContentAdd from "../component/ContentAdd";
 
 function Assign(prop) {
   const [icon, setIcon] = useState("person_outline");

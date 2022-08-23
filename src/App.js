@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./component/Header";
 import LNB from "./component/LNB";
+import Detail from "./component/Detail";
 import Today from "./route/Today";
 import Important from "./route/Important";
 import Plan from "./route/Plan";
@@ -86,6 +87,7 @@ function App() {
               }
             />
           </Routes>
+          <Detail />
         </main>
       </BrowserRouter>
     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/today.css";
 import ContentAdd from "../component/ContentAdd";
+import Content from "../component/Content";
 
 function Today(prop) {
   var now = new Date();
@@ -39,6 +40,7 @@ function Today(prop) {
         {todayMonth}월 {todayDate}일, {todayDay}요일
       </div>
       <ContentAdd />
+      <Content />
     </div>
   );
 }

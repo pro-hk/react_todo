@@ -43,12 +43,13 @@ function LNB(prop) {
         <li className={active === i.id ? "on" : ""}>
           <span className="material-icons">{i.icon}</span>
           <span className="title">{i.title}</span>
-          <span className="count"></span>
+          <span className="count">0</span>
         </li>
       </Link>
     ));
   // 메뉴 end
 
+  // 하단 link
   const links = [
     { id: 1, link: "/", title: "mail_outline" },
     { id: 2, link: "/", title: "calendar_month" },
@@ -64,6 +65,7 @@ function LNB(prop) {
       </Link>
     </li>
   ));
+  // link end
 
   return (
     <div className={"LNB " + off}>
