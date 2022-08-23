@@ -1,87 +1,25 @@
 .detail {
+  /* display: none; */
   min-width: 380px;
   height: calc(100vh - 50px);
-  background-color: #fff;
   position: relative;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.LNB.off {
-  width: 0;
-  display: none;
-}
-
-.LNB button {
-  margin-bottom: 10px;
-  padding: 30px 0 0 20px;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
-
-.LNB .menu {
-  padding: 0;
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.LNB .menu:after {
-  content: "";
+.detail.on {
   display: block;
-  width: 260px;
-  height: 2px;
-  border-bottom: 1px solid #eee;
-  position: absolute;
-  bottom: -10px;
-  left: 10px;
 }
 
-.LNB .menu li {
-  list-style: none;
-  padding: 10px 20px;
+.detail .container {
+  padding: 10px 20px 0 20px;
+}
+
+.detail .container label {
+  background-color: #fff;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
-.LNB .menu li.on {
-  background-color: #ecf6fd;
-  position: relative;
-}
-
-.LNB .menu li.on:after {
-  content: "";
-  display: block;
-  width: 2px;
-  height: 44px;
-  background-color: #2564cf;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-.LNB .menu li:hover:not(.on) {
-  background-color: #e7e7e7;
-}
-
-.LNB .menu li .title {
-  width: 150px;
-}
-
-.LNB .menu li .count {
-  width: 30px;
-}
-
-.LNB .link {
+.detail .container label .title {
   width: 100%;
-  position: absolute;
-  bottom: 10px;
-}
-
-.LNB .link .linkList {
-  display: flex;
-  justify-content: space-between;
-}
-
-.LNB .link .linkList li {
-  width: 20%;
-  text-align: center;
 }

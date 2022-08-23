@@ -88,7 +88,7 @@
 }
 
 .contents li .content {
-  width: calc(100% - 40px);
+  width: 100%;
   cursor: pointer;
   padding-left: 20px;
   line-height: 1;

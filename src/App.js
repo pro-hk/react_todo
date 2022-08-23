@@ -13,6 +13,24 @@ function App() {
   var [icon, setIcon] = useState("wb_sunny");
   var [open, setOpen] = useState("");
 
+  // 컨텐트 관리
+  const [contents, setContents] = useState([
+    {
+      id: 1,
+      content: "abcd",
+      type: "작업",
+      star: "star_border",
+      checked: false,
+    },
+    {
+      id: 2,
+      content: "abcdasdfd",
+      type: "작업",
+      star: "star_border",
+      checked: false,
+    },
+  ]);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -30,6 +48,7 @@ function App() {
               path="/today"
               element={
                 <Today
+                  contents={contents}
                   data={icon}
                   onOpen={() => {
                     setIcon("wb_sunny");

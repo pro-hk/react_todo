@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/contentAdd.css";
+import "../css/content.css";
 
 function ContentAdd() {
   // 추가 버튼 커서 모양 관리
@@ -40,7 +40,14 @@ function ContentAdd() {
         </div>
         <div className="option">
           <div>{optionList}</div>
-          <button style={cursor}>추가</button>
+          <button
+            style={cursor}
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            추가
+          </button>
         </div>
       </div>
     </>

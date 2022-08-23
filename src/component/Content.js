@@ -1,9 +1,35 @@
+import React, { useState } from "react";
+
 function Content() {
   // 컨텐트 관리
-  const contents = [
-    { id: 1, content: "abcd", type: "작업" },
-    { id: 2, content: "abcd", type: "작업" },
-  ];
+  const [contents, setContents] = useState([
+    {
+      id: 1,
+      content: "abcd",
+      type: "작업",
+    },
+    {
+      id: 2,
+      content: "abcdasdfd",
+      type: "작업",
+    },
+  ]);
+  //    readonly && 동적  구분 -> state를 따로
+  // react component callback
+
+  const Star = () => {
+    const [star, setStar] = useState(false);
+    return (
+      <span
+        className="material-icons"
+        onClick={() => {
+          setStar(!star);
+        }}
+      >
+        {star ? "star" : "star_border"}
+      </span>
+    );
+  };
 
   const ContentList = () =>
     contents.map((i) => (
@@ -13,7 +39,7 @@ function Content() {
           <p>{i.content}</p>
           <span>{i.type}</span>
         </div>
-        <span className="material-icons">star_border</span>
+        <Star />
       </li>
     ));
   // 컨텐트 end

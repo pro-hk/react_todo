@@ -63,7 +63,8 @@
 }
 
 .LNB .menu li .title {
-  width: 150px;
+  padding-left: 20px;
+  width: 100%;
 }
 
 .LNB .menu li .count {
