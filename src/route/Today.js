@@ -4,6 +4,7 @@ import ContentAdd from "../component/ContentAdd";
 import Content from "../component/Content";
 
 function Today(prop) {
+  // 날짜 관리
   var now = new Date();
   var todayMonth = now.getMonth() + 1;
   var todayDate = now.getDate();
@@ -16,6 +17,12 @@ function Today(prop) {
       setIcon("menu");
     }
   });
+
+  // 선택
+  const [selectID, setSelectID] = useState(null);
+  if (selectID !== null) {
+    prop.onSelectID(selectID);
+  }
 
   return (
     <div className="today">
@@ -39,8 +46,8 @@ function Today(prop) {
       <div className="date drag">
         {todayMonth}월 {todayDate}일, {todayDay}요일
       </div>
-      <ContentAdd />
-      <Content />
+      <ContentAdd contents={prop.contents} onAddContent={(content) => prop.onAddContent(content)} />
+      <Content contents={prop.contents} onSelect={(id) => setSelectID(id)} />
     </div>
   );
 }

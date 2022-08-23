@@ -19,17 +19,22 @@ function App() {
       id: 1,
       content: "abcd",
       type: "작업",
-      star: "star_border",
       checked: false,
     },
     {
       id: 2,
       content: "abcdasdfd",
       type: "작업",
-      star: "star_border",
       checked: false,
     },
   ]);
+
+  var [selectContent, setSelectContent] = useState({
+    id: 1,
+    content: "abcd",
+    type: "작업",
+    checked: false,
+  });
 
   return (
     <div className="App">
@@ -53,6 +58,14 @@ function App() {
                   onOpen={() => {
                     setIcon("wb_sunny");
                     setOpen("open");
+                  }}
+                  onAddContent={(content) => setContents(contents.concat(content))}
+                  onSelectID={(id) => {
+                    for (var i = 0; i < contents.length; i++) {
+                      if (contents[i].id === id) {
+                        setSelectContent(contents[i]);
+                      }
+                    }
                   }}
                 />
               }
@@ -106,7 +119,15 @@ function App() {
               }
             />
           </Routes>
-          <Detail />
+          <Detail
+            select={selectContent}
+            deleteID={(id) => {
+              setContents(contents.filter((i) => i.id !== id));
+            }}
+            updateID={(content) => {
+              setContents(contents.map((i) => (i.id === content.id ? { ...contents, content } : i)));
+            }}
+          />
         </main>
       </BrowserRouter>
     </div>

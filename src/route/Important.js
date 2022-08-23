@@ -27,7 +27,7 @@ function Important(prop) {
           <span className="material-icons">more_horiz</span>
         </a>
       </div>
-      <ContentAdd />
+      <ContentAdd contents={{}} />
     </div>
   );
 }

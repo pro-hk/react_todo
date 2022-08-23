@@ -1,19 +1,6 @@
 import React, { useState } from "react";
 
-function Content() {
-  // 컨텐트 관리
-  const [contents, setContents] = useState([
-    {
-      id: 1,
-      content: "abcd",
-      type: "작업",
-    },
-    {
-      id: 2,
-      content: "abcdasdfd",
-      type: "작업",
-    },
-  ]);
+function Content(prop) {
   //    readonly && 동적  구분 -> state를 따로
   // react component callback
 
@@ -32,10 +19,15 @@ function Content() {
   };
 
   const ContentList = () =>
-    contents.map((i) => (
+    prop.contents.map((i) => (
       <li key={i.id}>
         <span className="material-icons check">radio_button_unchecked</span>
-        <div className="content">
+        <div
+          className="content"
+          onClick={() => {
+            prop.onSelect(i.id);
+          }}
+        >
           <p>{i.content}</p>
           <span>{i.type}</span>
         </div>
