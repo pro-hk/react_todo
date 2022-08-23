@@ -2,12 +2,15 @@ import "../css/header.css";
 import React, { useState } from "react";
 
 function Header() {
+  // 서치 관리
   const [active, setActive] = useState("");
 
   const click = () => {
     setActive(active === "" ? "active" : "");
   };
+  // 서치 end
 
+  // 우측 상단 링크 관리
   const etcs = [
     { id: 1, link: "/", title: "settings" },
     { id: 2, link: "/", title: "question_mark" },
@@ -20,6 +23,7 @@ function Header() {
       <span className="material-icons">{i.title}</span>
     </a>
   ));
+  // 링크 end
 
   return (
     <header id="header">

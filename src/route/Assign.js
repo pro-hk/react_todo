@@ -27,7 +27,6 @@ function Assign(prop) {
           <span className="material-icons">more_horiz</span>
         </a>
       </div>
-      <ContentAdd />
     </div>
   );
 }

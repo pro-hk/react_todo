@@ -12,6 +12,7 @@ function LNB(prop) {
     }
   });
 
+  // 메뉴 관리
   const menus = [
     { id: 1, link: "/today", icon: "wb_sunny", title: "오늘 할 일" },
     { id: 2, link: "/important", icon: "star_border", title: "중요" },
@@ -46,6 +47,7 @@ function LNB(prop) {
         </li>
       </Link>
     ));
+  // 메뉴 end
 
   const links = [
     { id: 1, link: "/", title: "mail_outline" },
