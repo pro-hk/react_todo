@@ -1,22 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
+import Star from "./Star";
 
 function Content(prop) {
   //    readonly && 동적  구분 -> state를 따로
   // react component callback
-
-  const Star = () => {
-    const [star, setStar] = useState(false);
-    return (
-      <span
-        className="material-icons"
-        onClick={() => {
-          setStar(!star);
-        }}
-      >
-        {star ? "star" : "star_border"}
-      </span>
-    );
-  };
 
   const ContentList = () =>
     prop.contents.map((i) => (
@@ -31,7 +18,10 @@ function Content(prop) {
           <p>{i.content}</p>
           <span>{i.type}</span>
         </div>
-        <Star />
+        <Star
+          star={prop.stars[i.id - 1].star}
+          onStar={(star) => prop.onStar(i.id, star)}
+        />
       </li>
     ));
   // 컨텐트 end

@@ -1,7 +1,7 @@
 import "../css/detail.css";
+import Star from "./Star";
 
 function Detail(prop) {
-  console.log(prop);
   if (prop.select !== null) {
     return (
       <div className="detail">
@@ -9,7 +9,7 @@ function Detail(prop) {
           <label>
             <span className="material-icons">radio_button_unchecked</span>
             <span className="title">{prop.select.content}</span>
-            <span className="material-icons">star_border</span>
+            <Star star={prop.star} />
           </label>
         </div>
         <div className="links">

@@ -27,6 +27,7 @@ function ContentAdd(prop) {
     id: prop.contents.length + 1,
     content: "",
     type: "작업",
+    star: false,
     checked: false,
   });
 
@@ -40,7 +41,11 @@ function ContentAdd(prop) {
           value={addContent.content}
           onChange={(e) => {
             setAddContent({ ...addContent, content: e.target.value });
-            setCursor(e.target.value !== "" ? { cursor: "pointer" } : { cursor: "no-drop" });
+            setCursor(
+              e.target.value !== ""
+                ? { cursor: "pointer" }
+                : { cursor: "no-drop" }
+            );
           }}
         ></input>
       </div>
@@ -52,7 +57,11 @@ function ContentAdd(prop) {
             e.preventDefault();
             if (addContent.content !== "") {
               prop.onAddContent(addContent);
-              setAddContent({ ...addContent, id: addContent.id + 1, content: "" });
+              setAddContent({
+                ...addContent,
+                id: addContent.id + 1,
+                content: "",
+              });
               setCursor({ cursor: "no-drop" });
             }
           }}

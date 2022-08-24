@@ -43,7 +43,7 @@ function LNB(prop) {
         <li className={active === i.id ? "on" : ""}>
           <span className="material-icons">{i.icon}</span>
           <span className="title">{i.title}</span>
-          <span className="count">0</span>
+          <span className="count">{prop.length}</span>
         </li>
       </Link>
     ));

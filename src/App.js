@@ -33,8 +33,14 @@ function App() {
     id: 1,
     content: "abcd",
     type: "작업",
+    star: false,
     checked: false,
   });
+
+  const [stars, setStars] = useState([
+    { id: 1, star: false },
+    { id: 2, star: false },
+  ]);
 
   return (
     <div className="App">
@@ -42,6 +48,7 @@ function App() {
         <Header />
         <main>
           <LNB
+            length={contents.length}
             data={open}
             onClose={() => {
               setIcon("menu");
@@ -53,17 +60,31 @@ function App() {
               path="/today"
               element={
                 <Today
+                  stars={stars}
                   contents={contents}
                   data={icon}
                   onOpen={() => {
                     setIcon("wb_sunny");
                     setOpen("open");
                   }}
-                  onAddContent={(content) => setContents(contents.concat(content))}
+                  onAddContent={(content) => {
+                    setContents(contents.concat(content));
+                    setStars(stars.concat({ id: content.id, star: false }));
+                  }}
                   onSelectID={(id) => {
                     for (var i = 0; i < contents.length; i++) {
                       if (contents[i].id === id) {
                         setSelectContent(contents[i]);
+                      }
+                    }
+                  }}
+                  onStar={(id, star) => {
+                    console.log("app", id, star);
+                    for (var i = 0; i < stars.length; i++) {
+                      if (stars[i].id === id) {
+                        console.log("id", id);
+
+                        // setStars(...stars, { star: star });
                       }
                     }
                   }}
@@ -125,7 +146,11 @@ function App() {
               setContents(contents.filter((i) => i.id !== id));
             }}
             updateID={(content) => {
-              setContents(contents.map((i) => (i.id === content.id ? { ...contents, content } : i)));
+              setContents(
+                contents.map((i) =>
+                  i.id === content.id ? { ...contents, content } : i
+                )
+              );
             }}
           />
         </main>
