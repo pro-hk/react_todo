@@ -1,17 +1,22 @@
 .detail {
-  /* display: none; */
+  display: block;
   min-width: 380px;
   height: calc(100vh - 50px);
   position: relative;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.detail.on {
-  display: block;
+.detail.off {
+  display: none;
 }
 
 .detail .container {
-  padding: 10px 20px 0 20px;
+  padding: 20px;
+  position: relative;
+}
+
+.detail .container > div {
+  margin-bottom: 10px;
 }
 
 .detail .container label {
@@ -19,7 +24,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px;
 }
-.detail .container label .title {
+.detail label .title {
   width: 100%;
+}
+
+.detail .links {
+  position: fixed;
+  bottom: 0;
+  min-width: 340px;
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #797775;
+  color: #797775;
+}
+
+.detail .links span {
+  font-size: 15px;
+}
+.detail .links span:nth-child(2) {
+  font-size: 12px;
 }

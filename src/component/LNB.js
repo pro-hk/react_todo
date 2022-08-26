@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/lnb.css";
 
 function LNB(prop) {
-  const [off, setOff] = useState("");
   const [active, setActive] = useState(1);
-
-  useEffect(() => {
-    if (prop.data === "open") {
-      setOff("");
-    }
-  });
 
   // 메뉴 관리
   const menus = [
-    { id: 1, link: "/today", icon: "wb_sunny", title: "오늘 할 일" },
+    {
+      id: 1,
+      link: "/today",
+      icon: "wb_sunny",
+      title: "오늘 할 일",
+      length: prop.length,
+    },
     { id: 2, link: "/important", icon: "star_border", title: "중요" },
     {
       id: 3,
@@ -28,7 +27,7 @@ function LNB(prop) {
       icon: "person_outline",
       title: "나에게 할당됨",
     },
-    { id: 5, link: "/work", icon: "home", title: "작업" },
+    { id: 5, link: "/work", icon: "home", title: "작업", length: prop.length },
   ];
 
   const MenuList = () =>
@@ -43,7 +42,7 @@ function LNB(prop) {
         <li className={active === i.id ? "on" : ""}>
           <span className="material-icons">{i.icon}</span>
           <span className="title">{i.title}</span>
-          <span className="count">{prop.length}</span>
+          <span className="count">{i.length}</span>
         </li>
       </Link>
     ));
@@ -68,12 +67,11 @@ function LNB(prop) {
   // link end
 
   return (
-    <div className={"LNB " + off}>
+    <div className={prop.open ? "LNB" : "LNB off"}>
       <button
         href="/"
         onClick={function () {
           prop.onClose();
-          setOff("off");
         }}
       >
         <span className="material-icons">menu</span>

@@ -10,8 +10,14 @@ import Work from "./route/Work";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  var [icon, setIcon] = useState("wb_sunny");
-  var [open, setOpen] = useState("");
+  var [icon, setIcon] = useState([
+    { today: "wb_sunny" },
+    { important: "star_border" },
+    { plan: "calendar_month" },
+    { assign: "person_outline" },
+    { work: "home" },
+  ]);
+  var [LNBopen, setLNBOpen] = useState(true);
 
   // 컨텐트 관리
   const [contents, setContents] = useState([
@@ -19,28 +25,25 @@ function App() {
       id: 1,
       content: "abcd",
       type: "작업",
-      checked: false,
+      date: "어제",
     },
     {
       id: 2,
       content: "abcdasdfd",
       type: "작업",
-      checked: false,
+      date: "오늘",
     },
   ]);
 
-  var [selectContent, setSelectContent] = useState({
-    id: 1,
-    content: "abcd",
-    type: "작업",
-    star: false,
-    checked: false,
-  });
+  // detail 관리(select)
+  var [selectContent, setSelectContent] = useState(null);
+  const [detailOff, setDetailOff] = useState(true);
 
-  const [stars, setStars] = useState([
-    { id: 1, star: false },
-    { id: 2, star: false },
-  ]);
+  // 별 관리
+  // const [stars, setStars] = useState([
+  //   { id: 1, star: false },
+  //   { id: 2, star: false },
+  // ]);
 
   return (
     <div className="App">
@@ -48,104 +51,108 @@ function App() {
         <Header />
         <main>
           <LNB
+            open={LNBopen}
             length={contents.length}
-            data={open}
             onClose={() => {
               setIcon("menu");
-              setOpen("");
+              setLNBOpen(false);
             }}
           />
           <Routes>
             <Route
-              path="/today"
+              path="today"
               element={
                 <Today
-                  stars={stars}
+                  //stars={stars}
                   contents={contents}
                   data={icon}
                   onOpen={() => {
                     setIcon("wb_sunny");
-                    setOpen("open");
+                    setLNBOpen(true);
                   }}
                   onAddContent={(content) => {
                     setContents(contents.concat(content));
-                    setStars(stars.concat({ id: content.id, star: false }));
+                    //setStars(stars.concat({ id: content.id, star: false }));
                   }}
                   onSelectID={(id) => {
                     for (var i = 0; i < contents.length; i++) {
                       if (contents[i].id === id) {
                         setSelectContent(contents[i]);
+                        setDetailOff(true);
                       }
                     }
                   }}
                   onStar={(id, star) => {
                     console.log("app", id, star);
-                    for (var i = 0; i < stars.length; i++) {
-                      if (stars[i].id === id) {
-                        console.log("id", id);
+                    // for (var i = 0; i < stars.length; i++) {
+                    //   if (stars[i].id === id) {
+                    //     console.log("id", id);
 
-                        // setStars(...stars, { star: star });
-                      }
-                    }
+                    //     // setStars(...stars, { star: star });
+                    //   }
+                    // }
                   }}
                 />
               }
             />
             <Route
-              path="/important"
+              path="important"
               element={
                 <Important
                   data={icon}
                   onOpen={() => {
                     setIcon("star_border");
-                    setOpen("open");
+                    setLNBOpen(true);
                   }}
                 />
               }
             />
             <Route
-              path="/plan"
+              path="plan"
               element={
                 <Plan
                   data={icon}
                   onOpen={() => {
                     setIcon("calendar_month");
-                    setOpen("open");
+                    setLNBOpen(true);
                   }}
                 />
               }
             />
             <Route
-              path="/assign"
+              path="assign"
               element={
                 <Assign
                   data={icon}
                   onOpen={() => {
                     setIcon("person_outline");
-                    setOpen("open");
+                    setLNBOpen(true);
                   }}
                 />
               }
             />
             <Route
-              path="/work"
+              path="work"
               element={
                 <Work
                   data={icon}
                   onOpen={() => {
                     setIcon("home");
-                    setOpen("open");
+                    setLNBOpen(true);
                   }}
                 />
               }
             />
           </Routes>
           <Detail
-            select={selectContent}
-            deleteID={(id) => {
+            content={selectContent}
+            open={detailOff}
+            onClose={() => setDetailOff(false)}
+            onDeleteID={(id) => {
               setContents(contents.filter((i) => i.id !== id));
+              setSelectContent(null);
             }}
-            updateID={(content) => {
+            onUpdateID={(content) => {
               setContents(
                 contents.map((i) =>
                   i.id === content.id ? { ...contents, content } : i

@@ -16,8 +16,9 @@ function Today(prop) {
     if (prop.data === "menu") {
       setIcon("menu");
     }
-  });
-  // , 감시할 대상을 입력
+  }, [prop.data]);
+
+  const [addStar, setAddStar] = useState(null);
 
   return (
     <div className="today">
@@ -44,15 +45,12 @@ function Today(prop) {
       <ContentAdd
         contents={prop.contents}
         onAddContent={(content) => prop.onAddContent(content)}
+        onAddStar={(id) => setAddStar({ id: id, check: false })}
       />
       <Content
-        stars={prop.stars}
         contents={prop.contents}
         onSelect={(id) => prop.onSelectID(id)}
-        onStar={(id, star) => {
-          // console.log(id, star);
-          prop.onStar(id, star);
-        }}
+        addStar={addStar}
       />
     </div>
   );

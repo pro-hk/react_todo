@@ -23,12 +23,16 @@ function ContentAdd(prop) {
   // 링크 end
 
   // 추가
+  var now = new Date();
+  const week = ["일", "월", "화", "수", "목", "금", "토"];
+  const month = now.getMonth() + 1;
+
   const [addContent, setAddContent] = useState({
     id: prop.contents.length + 1,
     content: "",
     type: "작업",
-    star: false,
-    checked: false,
+    date:
+      month + "월 " + now.getDate() + "일, " + week[now.getDay()] + "에 생성됨",
   });
 
   return (
@@ -47,7 +51,7 @@ function ContentAdd(prop) {
                 : { cursor: "no-drop" }
             );
           }}
-        ></input>
+        />
       </div>
       <div className="option">
         <div>{optionList}</div>
@@ -63,6 +67,7 @@ function ContentAdd(prop) {
                 content: "",
               });
               setCursor({ cursor: "no-drop" });
+              prop.onAddStar(prop.contents.length + 1);
             }
           }}
         >
