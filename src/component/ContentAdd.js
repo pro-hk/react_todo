@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 import "../css/content.css";
+import React, { useState } from "react";
+import axios from "axios";
 
 function ContentAdd(prop) {
   // 추가 버튼 커서 모양 관리
@@ -28,11 +29,10 @@ function ContentAdd(prop) {
   const month = now.getMonth() + 1;
 
   const [addContent, setAddContent] = useState({
-    id: prop.contents.length + 1,
+    id: prop.todoList.length + 1,
     content: "",
     type: "작업",
-    date:
-      month + "월 " + now.getDate() + "일, " + week[now.getDay()] + "에 생성됨",
+    date: month + "월 " + now.getDate() + "일, " + week[now.getDay()],
   });
 
   return (
@@ -60,14 +60,22 @@ function ContentAdd(prop) {
           onClick={(e) => {
             e.preventDefault();
             if (addContent.content !== "") {
-              prop.onAddContent(addContent);
+              axios({
+                url: "http://localhost:3001/add",
+                method: "post",
+                data: {
+                  id: addContent.id,
+                  todo: addContent.content,
+                  date: addContent.date,
+                  star: false,
+                },
+              });
               setAddContent({
                 ...addContent,
                 id: addContent.id + 1,
                 content: "",
               });
               setCursor({ cursor: "no-drop" });
-              prop.onAddStar(prop.contents.length + 1);
             }
           }}
         >

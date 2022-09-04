@@ -12,7 +12,7 @@ function LNB(prop) {
       link: "/today",
       icon: "wb_sunny",
       title: "오늘 할 일",
-      length: prop.length,
+      length: 0,
     },
     { id: 2, link: "/important", icon: "star_border", title: "중요" },
     {
@@ -27,7 +27,7 @@ function LNB(prop) {
       icon: "person_outline",
       title: "나에게 할당됨",
     },
-    { id: 5, link: "/work", icon: "home", title: "작업", length: prop.length },
+    { id: 5, link: "/work", icon: "home", title: "작업", length: 0 },
   ];
 
   const MenuList = () =>

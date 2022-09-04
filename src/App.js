@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./component/Header";
 import LNB from "./component/LNB";
 import Detail from "./component/Detail";
@@ -7,7 +7,8 @@ import Important from "./route/Important";
 import Plan from "./route/Plan";
 import Assign from "./route/Assign";
 import Work from "./route/Work";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import axios from "axios";
 
 function App() {
   var [icon, setIcon] = useState([
@@ -20,23 +21,19 @@ function App() {
   var [LNBopen, setLNBOpen] = useState(true);
 
   // 컨텐트 관리
-  const [contents, setContents] = useState([
-    {
-      id: 1,
-      content: "abcd",
-      type: "작업",
-      date: "어제",
-    },
-    {
-      id: 2,
-      content: "abcdasdfd",
-      type: "작업",
-      date: "오늘",
-    },
-  ]);
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001")
+      .then((res) => {
+        setTodos(res.data.todoList);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   // detail 관리(select)
-  var [selectContent, setSelectContent] = useState(null);
+  const [selectTodo, setSelectTodo] = useState(null);
   const [detailOff, setDetailOff] = useState(true);
 
   // 별 관리
@@ -47,56 +44,46 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="react_todo">
         <Header />
         <main>
           <LNB
             open={LNBopen}
-            length={contents.length}
+            length={todos.length}
             onClose={() => {
               setIcon("menu");
               setLNBOpen(false);
             }}
           />
           <Routes>
+            <Route path="/" element={<Navigate to="/today" />} />
             <Route
-              path="today"
+              path="/today"
               element={
                 <Today
-                  //stars={stars}
-                  contents={contents}
+                  todoList={todos}
                   data={icon}
                   onOpen={() => {
                     setIcon("wb_sunny");
                     setLNBOpen(true);
                   }}
                   onAddContent={(content) => {
-                    setContents(contents.concat(content));
+                    setTodos(todos.concat(content));
                     //setStars(stars.concat({ id: content.id, star: false }));
                   }}
                   onSelectID={(id) => {
-                    for (var i = 0; i < contents.length; i++) {
-                      if (contents[i].id === id) {
-                        setSelectContent(contents[i]);
+                    for (var i = 0; i < todos.length; i++) {
+                      if (todos[i]._id === id) {
+                        setSelectTodo(todos[i]);
                         setDetailOff(true);
                       }
                     }
-                  }}
-                  onStar={(id, star) => {
-                    console.log("app", id, star);
-                    // for (var i = 0; i < stars.length; i++) {
-                    //   if (stars[i].id === id) {
-                    //     console.log("id", id);
-
-                    //     // setStars(...stars, { star: star });
-                    //   }
-                    // }
                   }}
                 />
               }
             />
             <Route
-              path="important"
+              path="/important"
               element={
                 <Important
                   data={icon}
@@ -108,7 +95,7 @@ function App() {
               }
             />
             <Route
-              path="plan"
+              path="/plan"
               element={
                 <Plan
                   data={icon}
@@ -120,7 +107,7 @@ function App() {
               }
             />
             <Route
-              path="assign"
+              path="/assign"
               element={
                 <Assign
                   data={icon}
@@ -132,7 +119,7 @@ function App() {
               }
             />
             <Route
-              path="work"
+              path="/work"
               element={
                 <Work
                   data={icon}
@@ -145,19 +132,16 @@ function App() {
             />
           </Routes>
           <Detail
-            content={selectContent}
+            selectTodo={selectTodo}
             open={detailOff}
             onClose={() => setDetailOff(false)}
             onDeleteID={(id) => {
-              setContents(contents.filter((i) => i.id !== id));
-              setSelectContent(null);
+              setTodos(todos.filter((i) => i.id !== id));
+              setSelectTodo(null);
             }}
-            onUpdateID={(content) => {
-              setContents(
-                contents.map((i) =>
-                  i.id === content.id ? { ...contents, content } : i
-                )
-              );
+            onUpdate={(editContent) => {
+              setSelectTodo({ ...selectTodo, content: editContent });
+              // setContents(contents.map((i) => (i.id === content.id ? { ...contents, content } : i)));
             }}
           />
         </main>

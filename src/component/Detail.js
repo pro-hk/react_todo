@@ -4,15 +4,24 @@ import Star from "./Star";
 
 function Detail(prop) {
   // const [updateContent, setUpdateContent] = useState("");
-  if (prop.content !== null && prop.open) {
+  if (prop.selectTodo !== null && prop.open) {
     return (
       <div className={"detail "}>
         <div className="container">
           <div className="step">
             <label>
               <span className="material-icons">radio_button_unchecked</span>
-              <span className="title">{prop.content.content}</span>
-              <Star content={prop.content} />
+              <input
+                type="text"
+                value={prop.selectTodo.todo}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  prop.onUpdate(e.target.value);
+                  // prop.onUpdate(prop.content);
+                }}
+              />
+              <span className="title">{prop.selectTodo.todo}</span>
+              <Star content={prop.selectTodo} />
             </label>
             <label className="addStep">
               <span className="material-icons">radio_button_unchecked</span>
@@ -58,11 +67,11 @@ function Detail(prop) {
             <span className="material-icons" onClick={() => prop.onClose()}>
               input
             </span>
-            <span>{prop.content.date}</span>
+            <span>{prop.selectTodo.date}</span>
             <span
               className="material-icons"
               onClick={() => {
-                prop.onDeleteID(prop.content.id);
+                prop.onDeleteID(prop.selectTodo._id);
               }}
             >
               delete_outline

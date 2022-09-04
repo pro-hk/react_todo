@@ -7,7 +7,7 @@ function Work(prop) {
     if (prop.data === "menu") {
       setIcon("menu");
     }
-  });
+  }, [prop]);
   return (
     <div className="today">
       <div className="main_title" style={{ color: "#2564cf" }}>

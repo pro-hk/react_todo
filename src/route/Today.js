@@ -18,8 +18,6 @@ function Today(prop) {
     }
   }, [prop.data]);
 
-  const [addStar, setAddStar] = useState(null);
-
   return (
     <div className="today">
       <div className="main_title">
@@ -42,15 +40,10 @@ function Today(prop) {
       <div className="date drag">
         {todayMonth}월 {todayDate}일, {todayDay}요일
       </div>
-      <ContentAdd
-        contents={prop.contents}
-        onAddContent={(content) => prop.onAddContent(content)}
-        onAddStar={(id) => setAddStar({ id: id, check: false })}
-      />
+      <ContentAdd todoList={prop.todoList} />
       <Content
-        contents={prop.contents}
+        todoList={prop.todoList}
         onSelect={(id) => prop.onSelectID(id)}
-        addStar={addStar}
       />
     </div>
   );
