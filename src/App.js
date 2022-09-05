@@ -7,6 +7,7 @@ import Important from "./route/Important";
 import Plan from "./route/Plan";
 import Assign from "./route/Assign";
 import Work from "./route/Work";
+// import Main from "./component/Main";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
 
@@ -27,6 +28,7 @@ function App() {
     axios
       .get("http://localhost:3001")
       .then((res) => {
+        console.log("res==", res);
         setTodos(res.data.todoList);
       })
       .catch((err) => console.log(err));
@@ -36,11 +38,8 @@ function App() {
   const [selectTodo, setSelectTodo] = useState(null);
   const [detailOff, setDetailOff] = useState(true);
 
-  // 별 관리
-  // const [stars, setStars] = useState([
-  //   { id: 1, star: false },
-  //   { id: 2, star: false },
-  // ]);
+  // maxID
+  console.log(todos);
 
   return (
     <div className="App">
@@ -69,7 +68,6 @@ function App() {
                   }}
                   onAddContent={(content) => {
                     setTodos(todos.concat(content));
-                    //setStars(stars.concat({ id: content.id, star: false }));
                   }}
                   onSelectID={(id) => {
                     for (var i = 0; i < todos.length; i++) {

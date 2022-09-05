@@ -3,6 +3,13 @@ import React, { useState } from "react";
 import axios from "axios";
 
 function ContentAdd(prop) {
+  var maxID;
+  if (prop.todoList.length === 0) {
+    maxID = 1;
+  } else {
+    maxID = prop.todoList[prop.todoList.length - 1]._id + 1;
+  }
+
   // 추가 버튼 커서 모양 관리
   const [cursor, setCursor] = useState({
     cursor: "no-drop",
@@ -29,7 +36,7 @@ function ContentAdd(prop) {
   const month = now.getMonth() + 1;
 
   const [addContent, setAddContent] = useState({
-    id: prop.todoList.length + 1,
+    id: maxID,
     content: "",
     type: "작업",
     date: month + "월 " + now.getDate() + "일, " + week[now.getDay()],
@@ -58,7 +65,6 @@ function ContentAdd(prop) {
         <button
           style={cursor}
           onClick={(e) => {
-            e.preventDefault();
             if (addContent.content !== "") {
               axios({
                 url: "http://localhost:3001/add",
@@ -67,8 +73,12 @@ function ContentAdd(prop) {
                   id: addContent.id,
                   todo: addContent.content,
                   date: addContent.date,
+                  type: addContent.type,
                   star: false,
                 },
+              }).then((response) => {
+                alert("입력");
+                console.log(response);
               });
               setAddContent({
                 ...addContent,

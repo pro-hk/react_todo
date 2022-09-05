@@ -16,11 +16,10 @@ mongoose
   .connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    dbName: "todo",
   })
   .then(() => console.log("MongoDB Connected.."))
   .catch((err) => console.log(err));
-
-const db = mongoose.Connection;
 
 app.use(cors());
 app.use(express.json());
